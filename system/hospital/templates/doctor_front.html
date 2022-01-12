@@ -1,0 +1,154 @@
+{% extends  'GFG.html' %}
+
+{% block content %}
+<html>
+<head>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        background: url(https://i.pinimg.com/originals/44/6e/3b/446e3b79395a287ca32f7977dd83b290.jpg);
+    }
+    .middle{
+      position: absolute;
+      top: 35%;
+      left:10%; 
+  }
+  .card{
+      cursor: pointer;
+      width: 380px;
+      height: 260px;
+  }
+  .front,.back{
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      backface-visibility: hidden;
+      position: absolute;
+      transition: transform .6s linear;
+  }
+  .front img{
+      height: 100%;
+  }
+  .front{
+      transform: perspective(600px) rotateY(0deg);
+  }
+  .back{
+      transform: perspective(600px) rotateY(180deg);
+  }
+  .back-content{
+      margin-top: 50%;
+      color: #000;
+      text-align: center;
+      width: 100%;
+  }
+  .sm{
+      margin: 20px 0;
+  }
+  .sm a{
+      display: inline-flex;
+      width: 40px;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+      color: blue;
+      font-size: 18px;
+      transition: 0.4s;
+      border-radius: 50%;
+  }
+  .sm a:hover{
+      background: black;
+      color:white;
+  }
+  .card:hover > .front{
+      transform: perspective(600px) rotateY(-180deg);
+  }
+  .card:hover > .back{
+      transform: perspective(600px) rotateY(0deg);
+  }
+  .box1{
+      position: relative;
+      width: auto;
+      height: 100%;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+  
+  }
+  .box1:before{
+      content:'';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: #fff;
+      z-index: -1;
+  }
+  .box1:after{
+      content:'';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: #fff;
+      z-index: -2;
+      filter: blur(40px);
+  }
+  .box1:before,.box1:after{
+      background: linear-gradient(235deg,white,black,blue,red,violet);
+  }
+  .content{
+      box-sizing: border-box;
+      padding: 0;
+      color: white;
+  }
+
+  
+    </style>
+
+</head>
+<body>
+
+<h3 id="head">Loged in as Doctor <span id="u_name"> Hello, {{request.user}}</span></h3>
+
+
+  <div class="card middle">
+    <div class="box1 card">
+    <div class="front">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYfVMPuk_t9mJdA_OAlSY87cEd71TLDggRrQ&usqp=CAU" alt=""/>
+    </div>
+    <div class="back">
+      <div class="back-content" style="margin-top: 20%;">
+        <h2 style="color:black;">
+        <a href="{% url 'appointment' %}" style="font-size:xx-large">Schedule Appointment</a><br>
+        </h2>
+      </div>
+    </div>
+   </div>
+  </div>
+<!-- three -->
+
+<div id="four" >
+  <div class="card middle" style="margin-left:700px">
+    <div class="box1 card">
+    <div class="front">
+      <img src="https://cdn-icons-png.flaticon.com/512/3076/3076404.png" alt=""/>
+    </div>
+    <div class="back">
+      <div class="back-content" style="margin-top: 20%;">
+        <h2 style="color:black;">
+          <a href="{% url 'doctor' %}" style="font-size:xx-large">Personal Information</a>
+        </h2>
+      </div>
+    </div>
+   </div>
+  </div>
+</div>
+<!-- background: linear-gradient(235deg,#89ff00,#060c21,#00bcd4); -->
+</body>
+</html>
+
+{% endblock %}

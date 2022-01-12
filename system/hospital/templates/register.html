@@ -1,0 +1,176 @@
+{% extends  'GFG.html' %}
+{% load static %}
+
+{% block content %}
+<html>
+<head>
+    <style>
+      *{
+        background:url(https://wallpaperaccess.com/full/16692.jpg);
+        color: white;
+    }
+    #head{
+      color:white;
+      text-align: left;
+    }
+        
+        #form_head{
+          color:white;
+          align-items: center;
+        }
+        
+            textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+            }
+            form {
+            padding: 20px;
+            border-radius: 6px;
+            background: transparent;
+            box-shadow: 0 0 8px  #669999; 
+            flex: 1;
+            margin: 20%;
+            margin-top: 0%;
+            }
+
+            #signup{
+              float: left;
+            }
+            #login{
+                float:right;
+            }
+
+            #log_in{
+            flex-direction:column;
+            }
+            #log_in input{
+              width: 200%
+            }
+            
+            input, select, textarea {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            }
+            input {
+            width: calc(100% - 10px);
+            padding: 5px;
+            }
+            input[type="date"] {
+            padding: 4px 5px;
+            }
+            textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+            }
+            
+            
+           
+            .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+            color:  #669999;
+            }
+            .item input:hover, .item select:hover, .item textarea:hover {
+            border: 1px solid transparent;
+            box-shadow: 0 0 3px 0  #669999;
+            color: #669999;
+            }
+            .item {
+            position: relative;
+            margin: 10px 0;
+            }
+            
+            .colums {
+            display:flex;
+            justify-content:space-between;
+            flex-direction:row;
+            flex-wrap:wrap;
+            }
+            .colums div {
+            width:48%;
+            }
+            
+            input[type="date"]::-webkit-inner-spin-button {
+            display: none;
+            }
+            .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+            position: absolute;
+            font-size: 20px;
+            color:  #a3c2c2;
+            }
+            .item i {
+            right: 1%;
+            top: 30px;
+            z-index: 1;
+            }
+        .btn-block {
+            margin-top: 10px;
+            text-align: center;
+            align-items: center;
+            }
+            button {
+            width: 100px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px; 
+            background:  black;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            }
+           
+                        
+    </style>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+
+  <h3 id="head">Registration Form</h3>
+  {% for message in messages %}
+
+  <p id="messages">{{message}}</p>
+{% endfor %}
+
+<div style="display: flex;">         
+<form action="" method="post" id="signup">
+  {% csrf_token %}
+
+  <h3 id="form_head">Create a New User Account</h3> 
+
+  <div class="colums" id="log_in">
+    <div class="item">
+      
+      <label for="user_name">User Name<span>*</span></label><h6 >{{form.username.errors}}</h6>
+      {{form.username}}
+    </div>
+
+    <div class="item">
+        
+        <label for="email_address">Email Address<span>*</span></label><h6>{{form.email.errors}}</h6>
+        {{form.email}}
+      </div>
+    
+    <div class="item">
+      <label for="password">Password<span>*</span></label>
+      {{form.password1}}
+    </div>
+
+    <div class="item">
+        <label for="confirm_password">Confirm Password<span>*</span></label><h6>{{form.password2.errors}}</h6>
+        {{form.password2}}
+      </div>
+  </div>
+
+  <div class="btn-block">
+    <button class ="btn btn-primary" type="submit" name="Create User">Sign up</button>
+  </div>
+
+  
+  </form>
+
+  
+</div>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
+
+{% endblock %}

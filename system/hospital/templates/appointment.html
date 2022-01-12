@@ -1,0 +1,104 @@
+{% extends  'GFG.html' %}
+
+{% block content %}
+<html>
+<head>
+  <style>
+    *{
+      background: black;
+    }
+    table{
+      margin-left: auto;
+      margin-right: auto;
+    }
+    td{
+      color:rgb(226, 10, 10);
+    }
+</style>
+
+</head>
+<body>
+
+<h3 id="head">Loged in as Doctor<span id="u_name"> Hello, {{request.user}}</span></h3>
+
+
+<div style="display: flex;">
+<br><br>
+
+<form action="" method="post" id="">
+{% csrf_token %}
+
+  <table border="3">
+    <thead>
+      <tr>
+        <th>Patient Name</th>
+        <th>Appointment Date</th>
+        <th>Reason</th>
+        <th>Email ID</th>
+        <th>Mobile Number</th>
+        <th>Accept/Reject</th>
+      </tr>
+    </thead>
+  {% for p in patient %}
+    <tr> 
+      <td>{{p.first_name}} {{p.last_name}}</td>
+      <td>{{p.appointment_date}}</td>
+      <td>{{p.reason}} ({{p.symptoms}})</td>
+      <td>{{p.email_id}}</td>
+      <td>{{p.mobile_number}}</td>
+      <td style="background: grey;"><button type="submit" name="accept" style="background:green" value="{{p.user_name}}">Accept</button>
+        <button type="submit" name="reject" style="background:red" value="{{p.user_name}}">Reject</button></td>          
+    </tr>
+  {% endfor %} 
+</table>
+</form>
+</div>
+
+
+
+
+<br><br>
+<h3 id="head">Scheduled Future Appointments</h3>
+<div style="display: flex;">
+
+  <table border="3">
+    <thead>
+      <tr>
+          <th>Patient Name</th>
+          <th>Appointment Date</th>
+          <th>Reason</th>
+          <th>Email ID</th>
+          <th>Mobile Number</th>
+      </tr>
+    </thead>
+  {% for p in scheduled %}
+    {% for t in today %}
+    {% if p.date|date:"d M Y" == t|date:"d M Y" %}
+    <tr>
+      <td style="background:lightcoral">{{p.patient}}</td>
+      <td style="background:lightcoral">{{p.date}}</td>
+      <td style="background:lightcoral">{{p.reason}} ({{p.symptoms}})</td>
+      <td style="background:lightcoral">{{p.email_id}}</td>
+      <td style="background:lightcoral">{{p.mobile_number}}</td>
+    </tr>  
+    {% endif %}
+    {% endfor %}
+
+    {% for f in future %}
+    {% if p.date|date:"d M Y" == f|date:"d M Y" %}
+    <tr>
+      <td style="background:darkturquoise ;">{{p.patient}}</td>
+      <td style="background:darkturquoise ;">{{p.date}}</td>
+      <td style="background:darkturquoise ;">{{p.reason}} ({{p.symptoms}})</td>
+      <td style="background:darkturquoise ;">{{p.email_id}}</td>
+      <td style="background:darkturquoise ;">{{p.mobile_number}}</td>
+    </tr>  
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+</table>
+</div>
+
+</body>
+</html>
+{% endblock %}

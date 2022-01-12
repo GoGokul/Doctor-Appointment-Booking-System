@@ -1,0 +1,50 @@
+{% extends  'GFG.html' %}
+
+{% block content %}
+<html>
+  <head>
+    <style>
+      *{
+        background: url(https://i.pinimg.com/originals/44/6e/3b/446e3b79395a287ca32f7977dd83b290.jpg);
+        font-weight: bold;
+      }
+    select{
+      background-color: black;
+    }
+    ::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+    }
+    </style>
+
+    </head>
+<body>
+
+<h3 id="head">Loged in as Patient <span id="u_name"> Hello, {{request.user}}</span></h3>
+
+
+<div style="display: flex;">
+  
+  <form action="" method="post" id="patient_signup">
+    {% csrf_token %}
+
+    <h3 id="form_head"> Patient Registration Form</h3>
+    <table border="5" >
+    {{form}}
+    <label for="doctor">Available Doctor's</label>
+    <select  id="doctor" name="doctor" required>
+    {% for d in doctor %}
+        <option value="{{d.id}}">{{d.first_name}} {{d.last_name}} ({{d.specialist_in}})</option>
+    {% endfor %}
+    </select>  
+    </table>
+      <div class="btn-block">
+        <button type="submit">Submit</button>
+      </div>
+
+  </form>
+<br>
+</div>
+</body>
+</html>
+
+{% endblock %}
