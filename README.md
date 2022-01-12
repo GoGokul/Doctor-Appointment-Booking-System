@@ -6,10 +6,9 @@ https://www.knowsabouts.in/2022/01/doctor-appointment-booking-system-with.html
 Requirements
 
 Python (latest version preferable)<br>
-Django (latest version preferable)
-IDE (Visual Studio Code preferable)
-and a browser is needed to run the project.
-If you don't know how to create a Django local virtual environment please click the link to know about.
+Django (latest version preferable)<br>
+IDE (Visual Studio Code preferable)<br>
+and a browser is needed to run the project.<br>
 
 Abstract
 
