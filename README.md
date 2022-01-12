@@ -5,7 +5,7 @@ https://www.knowsabouts.in/2022/01/doctor-appointment-booking-system-with.html
 
 Requirements
 
-Python (latest version preferable)
+Python (latest version preferable)<br>
 Django (latest version preferable)
 IDE (Visual Studio Code preferable)
 and a browser is needed to run the project.
